@@ -1,12 +1,19 @@
 /** @type {import('next').NextConfig} */
+const withPlugins = require('next-compose-plugins');
 const optimizedImages = require('next-optimized-images');
-const isProd = process.env.NODE_ENV === 'production'
-
-const nextConfig = {
-  reactStrictMode: true,
-}
-
-module.exports ={
-  ...nextConfig,
-  assetPrefix: "./"
-}
+module.exports = withPlugins([
+  [optimizedImages, {
+    mozjpeg: {
+      quality: 80,
+    },
+    pngquant: {
+      speed: 3,
+      strip: true,
+      verbose: true,
+    },
+  }],
+  {
+    assetPrefix: './out',
+    reactStrictMode: true
+  },
+]);
