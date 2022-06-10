@@ -13,7 +13,7 @@ module.exports = withPlugins([
     },
   }],
   {
-    assetPrefix: './out',
+    assetPrefix: './',
     reactStrictMode: true
   },
 ]);
